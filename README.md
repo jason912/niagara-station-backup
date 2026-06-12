@@ -263,7 +263,7 @@ node niagara-backup.js --dry-run
 ## 联系作者
 
 有问题或建议，欢迎邮件联系：
-**jason.zhang@gline-net.cn**
+**jason.zhang@gline-net.com**
 
 ---
 
