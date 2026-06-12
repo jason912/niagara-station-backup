@@ -73,10 +73,10 @@ npm install nodemailer
 cp .env.example .env
 ```
 
-Edit `.env` with your station and email credentials:
+Edit `.env` with your station and email credentials (see `.env.example` for all options):
 
 ```ini
-# Niagara Station
+# Replace with your Niagara Station details
 STATION_HOST=192.168.x.x
 STATION_PORT=80
 STATION_SSL=false
@@ -84,15 +84,15 @@ STATION_USER=admin
 STATION_PASS=your_password
 STATION_NAME=Your_Station_Name
 
-# SMTP Email (for sending backups)
+# SMTP settings (example: Tencent Exmail, change to your provider)
 EMAIL_USER=your@email.com
 EMAIL_PASS=your_smtp_password
-EMAIL_HOST=smtp.exmail.qq.com
+EMAIL_HOST=smtp.example.com
 EMAIL_PORT=465
 EMAIL_TO=your@email.com
 
 # NAS backup path (optional)
-NAS_PATH=\\\\nas-server\\share\\backup
+NAS_PATH=\\\\your-nas-server\\share\\backup
 
 # Local save directory (default ./backups)
 SAVE_DIR=./backups
@@ -125,18 +125,17 @@ node niagara-backup.js --dir /path/to/save
 
 ---
 
-## Automated Full Flow (Local Execution)
+## Automated Full Flow
 
 ```bash
-cd C:\Users\Administrator\.openclaw\workspace\niagara-station-backup
+cd <project-directory>
 
-# Backup station 144
-copy .env.144 .env
+# Backup station
 node niagara-backup.js --no-email
 
 # Auto-commit backup file to GitHub
 git add -A
-git commit -m "Backup IAQ_Cloud $(date +%%Y-%%m-%%d_%%H:%%M)"
+git commit -m "Backup $(date +%%Y-%%m-%%d_%%H:%%M)"
 git push
 ```
 
@@ -145,8 +144,8 @@ git push
 | Layer | Path |
 |-------|------|
 | 💻 Local | `backups/` (same dir as script) |
-| 🗄️ NAS | `\\192.168.2.155\temp\niagara-backups\` |
-| ☁️ GitHub | https://github.com/jason912/niagara-station-backup |
+| 🗄️ NAS | `\\your-nas-server\share\niagara-backups\` |
+| ☁️ GitHub | `https://github.com/your-username/niagara-station-backup` |
 
 ---
 
@@ -155,14 +154,14 @@ git push
 Create separate `.env` files for each station, then copy before running:
 
 ```
-.env.112   → 192.168.2.112 (N4.14 test station)
-.env.144   → 192.168.2.144 (IAQ_Cloud)
+.env.station1   → Station 1 credentials
+.env.station2   → Station 2 credentials
 ...
 ```
 
 Usage:
 ```bash
-copy .env.144 .env
+copy .env.station1 .env
 node niagara-backup.js --no-email
 ```
 
@@ -192,8 +191,8 @@ niagara-station-backup/
 ├── niagara-backup.js     ← Main script (backup engine)
 ├── .env.example          ← Config template (no secrets)
 ├── .env                  ← Your actual config (in .gitignore)
-├── .env.112              ← Multi-station: station 112
-├── .env.144              ← Multi-station: station 144 (IAQ_Cloud)
+├── .env.station1         ← Multi-station: station 1 config
+├── .env.station2         ← Multi-station: station 2 config
 ├── README.md             ← This file
 ├── backups/              ← Backup output dir (auto-created)
 ├── SKILL.md              ← OpenClaw AI skill definition
@@ -255,7 +254,7 @@ node niagara-backup.js --dry-run
 
 ## Contact
 
-Questions or suggestions? Email me at: **jason.zhang@gline-net.com**
+Questions or suggestions? Email me at: **your-email@example.com**
 
 ---
 
